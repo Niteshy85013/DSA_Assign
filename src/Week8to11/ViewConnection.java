@@ -1,11 +1,13 @@
-package GUI;
-
+package Week8to11;
 
 import edu.uci.ics.jung.algorithms.layout.CircleLayout;
+import edu.uci.ics.jung.graph.DirectedSparseGraph;
+import edu.uci.ics.jung.visualization.VisualizationImageServer;
+import edu.uci.ics.jung.visualization.decorators.ToStringLabeller;
+import edu.uci.ics.jung.visualization.renderers.Renderer.VertexLabel.Position;
+import org.apache.commons.collections15.Transformer;
 
 import javax.swing.*;
-import javax.swing.text.Position;
-import javax.xml.transform.Transformer;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
@@ -15,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class ViewConnection<VisualizationImageServer> {
+public class ViewConnection {
     ViewConnection(){
         DirectedSparseGraph<String, String> g = new DirectedSparseGraph<>();
         List<String> list = new ArrayList<>();
@@ -121,11 +123,11 @@ public class ViewConnection<VisualizationImageServer> {
         float[] dash = {10.0f};
         final Stroke edgeStroke = new BasicStroke(1.0f, BasicStroke.CAP_BUTT,
                 BasicStroke.JOIN_MITER, 10.0f, dash, 0.0f);
-        Transformer edgeStrokeTransformer =
+        Transformer<String, Stroke> edgeStrokeTransformer =
                 s -> edgeStroke;
 
-        VisualizationImageServer vs =
-                new VisualizationImageServer(
+        VisualizationImageServer<String, String> vs =
+                new VisualizationImageServer<>(
                         new CircleLayout<>(g), new Dimension(500, 500));
 
 
@@ -135,7 +137,7 @@ public class ViewConnection<VisualizationImageServer> {
         vs.getRenderContext().setEdgeLabelTransformer(new ToStringLabeller<>());
         vs.getRenderer().getVertexLabelRenderer().setPosition(Position.N);
         JFrame frame = new JFrame();
-        frame.getContentPane().add((Component) vs);
+        frame.getContentPane().add(vs);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);

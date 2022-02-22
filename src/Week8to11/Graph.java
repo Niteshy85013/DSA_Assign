@@ -1,5 +1,4 @@
-package GUI;
-
+package Week8to11;
 public class Graph {
     int vertices;
     int[][] adjacencyMatrix;
@@ -22,7 +21,7 @@ public class Graph {
         adjacencyMatrix[destination][source]=0;
     }
 
-    //    Dijkstra Algorithm
+//    Dijkstra Algorithm
     public int[] shortestPath(int source) {
         boolean[] visited =new boolean[vertices];
         int[] minDistance =new int[vertices];

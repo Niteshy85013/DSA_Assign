@@ -1,0 +1,17 @@
+<component name="libraryTable">
+  <library name="jarfile">
+    <CLASSES>
+      <root url="file://$USER_HOME$/Downloads/jarfile/jarfile/jar_files (1)" />
+      <root url="file://$USER_HOME$/Downloads/jarfile/jarfile/jung-algorithms-2.0.jar (1)" />
+      <root url="file://$USER_HOME$/Downloads/jarfile/jarfile/jung-graph-impl-2.0.jar" />
+      <root url="file://$USER_HOME$/Downloads/jarfile/jarfile/jung-visualization-2.0.jar" />
+      <root url="jar://$USER_HOME$/Downloads/jarfile/jarfile/jung-api-2.1.1.jar!/edu" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://$USER_HOME$/Downloads/jarfile/jarfile/jar_files (1)" recursive="false" />
+    <jarDirectory url="file://$USER_HOME$/Downloads/jarfile/jarfile/jung-algorithms-2.0.jar (1)" recursive="false" />
+    <jarDirectory url="file://$USER_HOME$/Downloads/jarfile/jarfile/jung-graph-impl-2.0.jar" recursive="false" />
+    <jarDirectory url="file://$USER_HOME$/Downloads/jarfile/jarfile/jung-visualization-2.0.jar" recursive="false" />
+  </library>
+</component>

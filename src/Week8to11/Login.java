@@ -1,24 +1,23 @@
-package GUI;
-
+package Week8to11;
 import javax.swing.*;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
-class RegisterFrame {
-    RegisterFrame(){
-//        Initializing components in swing
-        JFrame f = new JFrame("System Registration Panel");
+class LoginFrame {
+    LoginFrame() {
+//        Initializing components is swing
+        JFrame f = new JFrame("System Login Panel");
         JLabel userLabel = new JLabel("USERNAME");
         JLabel passwordLabel = new JLabel("PASSWORD");
         JTextField userTextField = new JTextField();
-        JButton backButton = new JButton("Back");
         JPasswordField passwordField = new JPasswordField();
-        JButton registerButton = new JButton("REGISTER");
+        JButton loginButton = new JButton("LOGIN");
+        JButton backButton = new JButton("Back");
+        JButton registerButton = new JButton("Register");
         JButton resetButton = new JButton("RESET");
         JCheckBox showPassword = new JCheckBox("Show Password");
 
@@ -27,19 +26,21 @@ class RegisterFrame {
         f.add(passwordLabel).setBounds(50, 220, 100, 30);
         f.add(userTextField).setBounds(150, 150, 150, 30);
         f.add(passwordField).setBounds(150, 220, 150, 30);
-        f.add(registerButton).setBounds(50, 300, 100, 30);
+        f.add(loginButton).setBounds(50, 300, 100, 30);
         f.add(resetButton).setBounds(200, 300, 100, 30);
         f.add(showPassword).setBounds(150, 250, 150, 30);
         f.add(backButton).setBounds(5,25,100,30);
+        f.add(registerButton).setBounds(115,25,100,30);
 
-//        Register Action Listener
-        registerButton.addActionListener(e -> {
+//        Login Action Listener
+        loginButton.addActionListener(e -> {
             String username, password;
             username = userTextField.getText();
             password = passwordField.getText();
-            FileWriter fw;
+//            Storing login data from file into list
             List<String> list = new ArrayList<>();
             List<String> usernameList = new ArrayList<>();
+            List<String> passwordList = new ArrayList<>();
             File file = new File("file.txt");
             if(file.exists()){
                 try {
@@ -53,25 +54,24 @@ class RegisterFrame {
             for(String line : list){
                 String [] res = line.split(";");
                 usernameList.add(res[0]);
+                passwordList.add(res[1]);
             }
-            try {
-                if(!usernameList.contains(username)){
-                    fw = new FileWriter("file.txt",true);
-                    fw.write(username+";"+password+"\n");
-                    fw.close();
-                    JOptionPane.showMessageDialog(f,"User Registered Successfully");
+//          Validating username and password
+            if (usernameList.contains(username)){
+                int index = usernameList.indexOf(username);
+                if(usernameList.get(index).equals(username) && passwordList.get(index).equals(password)){
+                    JOptionPane.showMessageDialog(f,"Login Successful!");
                     f.dispose();
-                    new LoginFrame();
+                    new Select();
                 }
                 else {
-                    JOptionPane.showMessageDialog(f,"Username Already Taken");
-
+                    JOptionPane.showMessageDialog(f,"Invalid Password!");
                 }
-
-
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
             }
+            else {
+                JOptionPane.showMessageDialog(f,"User not registered!");
+            }
+
         });
 
         resetButton.addActionListener(e -> {
@@ -86,9 +86,15 @@ class RegisterFrame {
                 passwordField.setEchoChar('*');
             }
         });
+
         backButton.addActionListener(e -> {
             f.dispose();
             new Dashboard();
+        });
+
+        registerButton.addActionListener(e -> {
+            f.dispose();
+            new RegisterFrame();
         });
 
         f.setLayout(null);
